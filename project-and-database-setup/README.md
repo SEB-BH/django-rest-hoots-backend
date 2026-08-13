@@ -116,7 +116,9 @@ python manage.py startapp api
 
 The dot in the first command means “create the project in the current folder.” Without it, Django creates an extra outer folder.
 
-The important structure is now:
+## Django Project Structure
+
+After creating our Django **project** and **app**, our backend currently looks something like this:
 
 ```plaintext
 hoot-backend/
@@ -136,9 +138,363 @@ hoot-backend/
 └── requirements.txt
 ```
 
-- `manage.py` runs project commands.
-- `hoot_api` is the project configuration folder.
-- `api` is the app where we will write Hoot features.
+Remember that Django separates our code into a **project** and one or more **apps**.
+
+* `hoot_api/` is our **Django project**. It contains configuration for the backend as a whole.
+* `api/` is our **Django app**. This is where most of the code specific to our API will live.
+
+### `.venv/`
+
+This is our **virtual environment**. It contains the Python packages installed specifically for this project.
+
+We won't edit anything inside this folder, and we won't commit it to GitHub.
+
+### `api/`
+
+This is the Django app we created. Most of the code we write for our API will live here.
+
+#### `models.py`
+
+```plaintext
+api/models.py
+```
+
+This is where we'll define our **models**.
+
+Models describe the data our application stores in the database. If you're coming from Mongoose, Django models serve a similar purpose to our Mongoose schemas and models.
+
+#### `views.py`
+
+```plaintext
+api/views.py
+```
+
+This is where we'll write code that handles **requests and responses**.
+
+For our REST API, our views will eventually contain much of our CRUD logic.
+
+#### `migrations/`
+
+```plaintext
+api/migrations/
+```
+
+Django uses migrations to keep track of changes we make to our database structure.
+
+Django will generate files inside this directory when we run commands such as:
+
+```bash
+python manage.py makemigrations
+```
+
+We generally **don't write these files ourselves**.
+
+#### `admin.py`
+
+```plaintext
+api/admin.py
+```
+
+This file lets us register models with Django's built-in **admin site**.
+
+We may use this later, but it isn't necessary for building our API.
+
+#### `apps.py`
+
+```plaintext
+api/apps.py
+```
+
+This contains configuration for the `api` app.
+
+Django generates it for us, and we generally won't need to change it.
+
+### `manage.py`
+
+```plaintext
+manage.py
+```
+
+`manage.py` gives us access to Django's **command-line tools**.
+
+We'll use it frequently:
+
+```bash
+python manage.py runserver
+python manage.py makemigrations
+python manage.py migrate
+```
+
+We use this file often, but we generally **don't edit it**.
+
+### `requirements.txt`
+
+```plaintext
+requirements.txt
+```
+
+This keeps track of the Python packages our project depends on.
+
+For example:
+
+```txt
+Django
+djangorestframework
+django-cors-headers
+psycopg
+```
+
+Other developers can then install the project's dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
+
+### `hoot_api/`
+
+This is the **project configuration** directory.
+
+It contains settings that affect the entire Django project rather than one specific app.
+
+#### `urls.py`
+
+```plaintext
+hoot_api/urls.py
+```
+
+This is the project's main URL configuration.
+
+Requests enter Django through this URL configuration, which can then send them to URLs and views belonging to our `api` app.
+
+We'll modify this file when we connect our API's routes.
+
+#### Files We Probably Won't Touch
+
+There are several generated files and folders that Django needs, but that we likely won't edit during this project:
+
+```plaintext
+.venv/
+api/migrations/
+api/apps.py
+hoot_api/asgi.py
+hoot_api/wsgi.py
+```
+
+We may also make little or no use of:
+
+```plaintext
+api/admin.py
+```
+
+Django creates these because they support features that Django applications *can* use, even if our particular application doesn't need them.
+
+That leaves a relatively small number of files we'll spend most of our time working with:
+
+```plaintext
+api/models.py
+api/views.py
+hoot_api/urls.py
+hoot_api/settings.py
+manage.py
+requirements.txt
+```
+
+We'll also create a few additional files as we build our REST API.
+
+### Next: `settings.py`
+
+Before we start building, let's look at:
+
+```plaintext
+hoot_api/settings.py
+```
+
+`settings.py` is the main **configuration file for our Django project**. It tells Django which apps we're using, how to connect to our database, which middleware should run, and other project-wide settings.
+
+We don't need to understand every setting Django generated. Instead, let's look at the pieces that will matter for our application.
+
+
+## Django `settings.py`
+
+The `settings.py` file is the main **configuration file for a Django project**. It tells Django how the overall project should behave.
+
+You usually won't need to understand every setting right away. For now, focus on the sections we will interact with most often.
+
+### `BASE_DIR`
+
+```python
+BASE_DIR = Path(__file__).resolve().parent.parent
+```
+
+`BASE_DIR` represents the **root folder of our Django project**.
+
+Django can use this when it needs to build paths to other files or folders in our project.
+
+
+### `SECRET_KEY`
+
+```python
+SECRET_KEY = 'django-insecure-...'
+```
+
+Django uses the secret key internally for security-related features.
+
+The generated key is fine while we're developing locally, but **a real deployed application should not store its secret key directly in `settings.py` or commit it to GitHub**.
+
+We can eventually move this into an environment variable.
+
+
+### `DEBUG`
+
+```python
+DEBUG = True
+```
+
+When `DEBUG` is `True`, Django gives us detailed error pages that are very useful during development.
+
+In production, this should be:
+
+```python
+DEBUG = False
+```
+
+
+### `ALLOWED_HOSTS`
+
+```python
+ALLOWED_HOSTS = []
+```
+
+This controls which hostnames are allowed to serve our Django application.
+
+An empty list works for normal local development when `DEBUG = True`.
+
+When we eventually deploy our application, we'll add our deployed domain here.
+
+
+### `INSTALLED_APPS`
+
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+
+`INSTALLED_APPS` tells Django **which apps are part of this project**.
+
+Django starts us off with several built-in apps for things like authentication, sessions, static files, and the admin site.
+
+When we create our own app, we'll add it here:
+
+```python
+INSTALLED_APPS = [
+    # Django apps...
+    'inventory',
+]
+```
+
+If we're using packages such as Django REST Framework, they may also need to be added here:
+
+```python
+'rest_framework',
+'corsheaders',
+```
+
+
+### `MIDDLEWARE`
+
+```python
+MIDDLEWARE = [
+    ...
+]
+```
+
+Middleware is code that runs **between an incoming request and our Django application**, and/or between our application and the outgoing response.
+
+For example, middleware can handle:
+
+* security
+* authentication
+* sessions
+* CORS
+
+For now, we generally won't change this unless a package tells us to add something.
+
+
+### `ROOT_URLCONF`
+
+```python
+ROOT_URLCONF = 'config.urls'
+```
+
+This tells Django where the project's **main URL configuration** lives.
+
+You can think of this file as the starting point Django uses when deciding which code should handle an incoming URL.
+
+
+### `DATABASES`
+
+Django starts with SQLite:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
+
+This tells Django **which database to use and how to connect to it**.
+
+If we're using PostgreSQL, we'll replace this configuration with our PostgreSQL connection information.
+
+
+### `LANGUAGE_CODE` and `TIME_ZONE`
+
+```python
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+```
+
+These control Django's default language and timezone.
+
+
+### Static Files
+
+```python
+STATIC_URL = 'static/'
+```
+
+Static files are files such as:
+
+* CSS
+* JavaScript
+* icons
+* other assets
+
+This setting tells Django how static files should be referenced.
+
+
+### The Big Picture
+
+Think of `settings.py` as the project's **configuration panel**.
+
+It answers questions like:
+
+> What apps belong to this project?
+> What database are we using?
+> Are we in development mode?
+> What security features should run?
+> Where are important project resources located?
+
+We won't normally put our application's actual CRUD logic in `settings.py`. Instead, we'll return here whenever we need to **configure Django or a package we're adding to the project**.
 
 ## Create environment variables
 
