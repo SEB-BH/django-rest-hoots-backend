@@ -257,7 +257,7 @@ That's because there's actually **another layer**.  If you want to learn more ab
 
 ## Read the frontend contract
 
-Before building an API, inspect its client. The supplied React services expect these paths:
+Before building an API, inspect its client. The supplied React services (from our Hoot Frontend application) expect these paths:
 
 ```plaintext
 POST   /auth/sign-up
@@ -275,23 +275,3 @@ DELETE /hoots/:hootId/comments/:commentId
 
 They also expect IDs named `_id` and dates named `createdAt`. Django normally uses `id` and our Python code will use `created_at`. Later, serializers will translate those names so we do not need to rewrite the frontend.
 
-## Check your understanding
-
-For each responsibility, name the Django file or feature that handles it:
-
-1. Match the `/hoots` path.
-2. Decide whether the request is `GET` or `POST`.
-3. Describe a Hoot database table.
-4. Convert a Hoot into frontend-compatible data.
-5. Store the records permanently.
-
-<details>
-<summary>Answer</summary>
-
-1. `urls.py`
-2. A view function in `views.py`
-3. A model in `models.py`
-4. A serializer in `serializers.py`
-5. PostgreSQL
-
-</details>

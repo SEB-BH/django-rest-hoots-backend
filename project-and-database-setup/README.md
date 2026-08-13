@@ -158,6 +158,11 @@ Many macOS PostgreSQL setups can leave the username and password blank. EDB inst
 
 Also create a safe `.env.example` with the same variable names but no real password. Commit `.env.example`, not `.env`.
 
+Use the below command to generate a random string for your `SECRET_KEY`:
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
 ## Load the environment in settings
 
 At the top of `hoot_api/settings.py`, add the new imports:
