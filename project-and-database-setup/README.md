@@ -537,6 +537,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 ```
 
+`BASE_DIR / ".env"` essentially means the .env file inside the `BASE_DIR` directory.  `BASE_DIR` isn't a normal string.  It's a Python Path object from the built-in pathlib module. Path objects let you construct file paths using `/`.
+
 Change `SECRET_KEY`:
 
 ```python
