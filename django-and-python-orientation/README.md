@@ -11,7 +11,7 @@ The React frontend is already complete. Its service functions send HTTP requests
 
 One request will move through the application like this:
 
-1. A React service calls `fetch('http://localhost:8000/hoots')`.
+1. A React service calls `fetch('http://localhost:8000/hoots')`. (already built)
 2. Django's `urls.py` matches the `/hoots` path.
 3. A view function decides what to do based on the HTTP method.
 4. A model reads from or writes to PostgreSQL.
@@ -24,9 +24,9 @@ The frontend and backend are two separate applications. They can use different p
 
 | Express/Mongoose | Django/DRF | Job |
 | --- | --- | --- |
-| `server.js` configuration | `settings.py` | Configure the application |
-| Express route | Django URL pattern | Match a request path |
-| Controller function | View function | Run request logic |
+| `server.js` configurations | `settings.py` | Configure the application |
+| `server.js` Express routes | Django URL pattern | Match a request path |
+| Express Controller function | Django View function | Run request logic |
 | `req` | `request` | Hold incoming request data |
 | `req.body` | `request.data` | Hold parsed JSON from the body |
 | `res.json(data)` | `Response(data)` | Send JSON-shaped data |
@@ -145,6 +145,115 @@ def hoot_list_create(request):
 ```
 
 A line beginning with `@` is a **decorator**. It adds behavior to the function immediately below it. This decorator tells DRF which HTTP methods the view accepts and prepares the DRF request/response features.
+
+A Python **decorator is a function that accepts another function as an argument and returns a function**. The `@` syntax is mostly convenient syntax for doing that.
+
+The biggest adjustment from JavaScript is that instead of explicitly writing:
+
+```js
+someFunction(callback)
+```
+
+Python gives you syntax that says:
+
+```python
+@some_function
+def callback():
+    ...
+```
+
+## This is very similar to Express middleware
+
+Suppose Express has:
+
+```js
+app.get('/profile', isSignedIn, showProfile)
+```
+
+Conceptually:
+
+```text
+request
+   ↓
+isSignedIn
+   ↓
+showProfile
+```
+
+A Python framework might express a similar idea with a decorator:
+
+```python
+@login_required
+def profile(request):
+    ...
+```
+
+Conceptually:
+
+```text
+request
+   ↓
+login_required
+   ↓
+profile
+```
+
+They're **not exactly the same mechanism**, but they solve a similar architectural problem: adding behavior around request-handling functions.
+
+## Django uses decorators like this
+
+You may encounter:
+
+```python
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def profile(request):
+    ...
+```
+
+Mentally translate that to:
+
+```python
+profile = login_required(profile)
+```
+
+`login_required` receives the `profile` function and gives us back a wrapped version that checks authentication before allowing the original view to run.
+
+So rather than putting this logic into every view:
+
+```python
+def profile(request):
+    if not request.user.is_authenticated:
+        # redirect
+
+    # actual profile logic
+```
+
+we can separate the authentication concern:
+
+```python
+@login_required
+def profile(request):
+    # actual profile logic
+```
+
+## There's one slightly more confusing version
+
+You'll also see decorators with parentheses:
+
+```python
+@api_view(["GET", "POST"])
+def hoot_list(request):
+    ...
+```
+
+This looks like we're passing `["GET", "POST"]` instead of passing the function.
+
+That's because there's actually **another layer**.  If you want to learn more about decorators, check out [this documentation](https://wiki.python.org/moin/PythonDecorators#What_is_a_Decorator) - otherwise, just remember that they give extra functionality to the functions defined below them.
+
+> "`@api_view(["GET"])` wraps this function and adds DRF's API-view behavior to it. It also says this view accepts GET requests."
+
 
 ## Read the frontend contract
 
