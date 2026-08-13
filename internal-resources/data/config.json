@@ -1,0 +1,255 @@
+{
+  "org": {
+    "friendlyName": "Modular Curriculum All Courses",
+    "name": "modular-curriculum-all-courses"
+  },
+  "repo": {
+    "friendlyName": "Django REST Hoot Backend",
+    "name": "django-rest-hoots-backend",
+    "type": "Lesson",
+    "about": "A two-day beginner lesson that builds a Django REST API for the Hoot React frontend.",
+    "starterCode": "",
+    "solutionCode": "solution-code",
+    "deployedSite": ""
+  },
+  "courses": [
+    {
+      "name": "seb",
+      "courseAcronym": "SEB",
+      "courseFullName": "Software Engineering Bootcamp",
+      "logoUrl": "",
+      "microlessons": [
+        {
+          "friendlyName": "Django and Python Orientation",
+          "dirName": "django-and-python-orientation",
+          "type": "Content",
+          "skill": "Relate Express concepts to Django and read the Python used in the API.",
+          "learningObjective": "Explain the request path through a Django REST API and translate the Python syntax used in the lesson.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 30
+        },
+        {
+          "friendlyName": "Project and Database Setup",
+          "dirName": "project-and-database-setup",
+          "type": "Content",
+          "skill": "Create a virtual environment, Django project, app, and PostgreSQL connection.",
+          "learningObjective": "Set up and verify a Django REST Framework project connected to PostgreSQL.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 60
+        },
+        {
+          "friendlyName": "Models and Migrations",
+          "dirName": "models-and-migrations",
+          "type": "Content",
+          "skill": "Define related Django models and create database tables with migrations.",
+          "learningObjective": "Create Hoot and Comment models with user relationships and apply their migrations.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 75
+        },
+        {
+          "friendlyName": "Serializers and API Shapes",
+          "dirName": "serializers-and-api-shapes",
+          "type": "Content",
+          "skill": "Use serializers to validate input and shape model data as frontend-compatible JSON.",
+          "learningObjective": "Build nested serializers that return the exact fields expected by the React frontend.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 60
+        },
+        {
+          "friendlyName": "JWT Authentication",
+          "dirName": "jwt-authentication",
+          "type": "Content",
+          "skill": "Create sign-up and sign-in endpoints and protect routes with Bearer tokens.",
+          "learningObjective": "Issue a frontend-compatible JWT and use it to authenticate protected requests.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 75
+        },
+        {
+          "friendlyName": "Hoot CRUD",
+          "dirName": "hoot-crud",
+          "type": "Content",
+          "skill": "Build explicit list, create, show, update, and delete route handlers.",
+          "learningObjective": "Implement and test all CRUD operations for Hoots with function-based DRF views.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 75
+        },
+        {
+          "friendlyName": "Comments and Ownership",
+          "dirName": "comments-and-ownership",
+          "type": "Content",
+          "skill": "Build nested comment routes and enforce author-only changes.",
+          "learningObjective": "Create, update, and delete comments while preventing users from changing another author's content.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 75
+        },
+        {
+          "friendlyName": "Connect the React Frontend",
+          "dirName": "connect-the-react-frontend",
+          "type": "Content",
+          "skill": "Configure CORS and connect a Vite environment variable to Django.",
+          "learningObjective": "Run both applications and complete an authenticated request from React to Django.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 45
+        },
+        {
+          "friendlyName": "Integration Lab",
+          "dirName": "integration-lab",
+          "type": "Exercise",
+          "skill": "Verify the full application flow and debug integration failures.",
+          "learningObjective": "Demonstrate the complete MVP with two users and diagnose failures by layer.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 60
+        }
+      ],
+      "isHeaderShown": true,
+      "isHeaderModuleNavShown": true,
+      "isHeaderHomeNavShown": true,
+      "isHeaderMicrolessonNavShown": true,
+      "isHeaderMicrolessonVideoLinkShown": false,
+      "isHeaderNavSettingsShown": true,
+      "isFooterCopyrightShown": true,
+      "isFooterLessonNavShown": true,
+      "isStickyNavSettingShown": true,
+      "isStickyNavAllowed": true,
+      "isFixedNavAllowed": true,
+      "isStickyNavDefault": true,
+      "isStickyNavForcedDefault": false,
+      "isFixedNavForcedDefault": false,
+      "isDarkModeSettingShown": true,
+      "isDarkModeAllowed": true,
+      "isLightModeAllowed": true,
+      "isLightModeDefault": true,
+      "isLightModeForcedDefault": false,
+      "isDarkModeForcedDefault": false,
+      "isActivityTimeShown": true
+    },
+    {
+      "name": "fallback",
+      "courseAcronym": "",
+      "courseFullName": "",
+      "logoUrl": "",
+      "microlessons": [
+        {
+          "friendlyName": "Django and Python Orientation",
+          "dirName": "django-and-python-orientation",
+          "type": "Content",
+          "skill": "Relate Express concepts to Django and read the Python used in the API.",
+          "learningObjective": "Explain the request path through a Django REST API and translate the Python syntax used in the lesson.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 30
+        },
+        {
+          "friendlyName": "Project and Database Setup",
+          "dirName": "project-and-database-setup",
+          "type": "Content",
+          "skill": "Create a virtual environment, Django project, app, and PostgreSQL connection.",
+          "learningObjective": "Set up and verify a Django REST Framework project connected to PostgreSQL.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 60
+        },
+        {
+          "friendlyName": "Models and Migrations",
+          "dirName": "models-and-migrations",
+          "type": "Content",
+          "skill": "Define related Django models and create database tables with migrations.",
+          "learningObjective": "Create Hoot and Comment models with user relationships and apply their migrations.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 75
+        },
+        {
+          "friendlyName": "Serializers and API Shapes",
+          "dirName": "serializers-and-api-shapes",
+          "type": "Content",
+          "skill": "Use serializers to validate input and shape model data as frontend-compatible JSON.",
+          "learningObjective": "Build nested serializers that return the exact fields expected by the React frontend.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 60
+        },
+        {
+          "friendlyName": "JWT Authentication",
+          "dirName": "jwt-authentication",
+          "type": "Content",
+          "skill": "Create sign-up and sign-in endpoints and protect routes with Bearer tokens.",
+          "learningObjective": "Issue a frontend-compatible JWT and use it to authenticate protected requests.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 75
+        },
+        {
+          "friendlyName": "Hoot CRUD",
+          "dirName": "hoot-crud",
+          "type": "Content",
+          "skill": "Build explicit list, create, show, update, and delete route handlers.",
+          "learningObjective": "Implement and test all CRUD operations for Hoots with function-based DRF views.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 75
+        },
+        {
+          "friendlyName": "Comments and Ownership",
+          "dirName": "comments-and-ownership",
+          "type": "Content",
+          "skill": "Build nested comment routes and enforce author-only changes.",
+          "learningObjective": "Create, update, and delete comments while preventing users from changing another author's content.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 75
+        },
+        {
+          "friendlyName": "Connect the React Frontend",
+          "dirName": "connect-the-react-frontend",
+          "type": "Content",
+          "skill": "Configure CORS and connect a Vite environment variable to Django.",
+          "learningObjective": "Run both applications and complete an authenticated request from React to Django.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 45
+        },
+        {
+          "friendlyName": "Integration Lab",
+          "dirName": "integration-lab",
+          "type": "Exercise",
+          "skill": "Verify the full application flow and debug integration failures.",
+          "learningObjective": "Demonstrate the complete MVP with two users and diagnose failures by layer.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 60
+        }
+      ],
+      "isHeaderShown": true,
+      "isHeaderModuleNavShown": true,
+      "isHeaderHomeNavShown": true,
+      "isHeaderMicrolessonNavShown": true,
+      "isHeaderMicrolessonVideoLinkShown": false,
+      "isHeaderNavSettingsShown": true,
+      "isFooterCopyrightShown": true,
+      "isFooterLessonNavShown": true,
+      "isStickyNavSettingShown": true,
+      "isStickyNavAllowed": true,
+      "isFixedNavAllowed": true,
+      "isStickyNavDefault": true,
+      "isStickyNavForcedDefault": false,
+      "isFixedNavForcedDefault": false,
+      "isDarkModeSettingShown": true,
+      "isDarkModeAllowed": true,
+      "isLightModeAllowed": true,
+      "isLightModeDefault": true,
+      "isLightModeForcedDefault": false,
+      "isDarkModeForcedDefault": false,
+      "isActivityTimeShown": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "django-rest-hoots-backend",
+  "version": "1.0.0",
+  "description": "A two-day beginner lesson for building a Django REST Framework backend for Hoot",
+  "scripts": {
+    "mdv": "node md-validate.js"
+  },
+  "type": "module",
+  "author": "General Assembly",
+  "devDependencies": {
+    "ga-mdlint": "^1.0.5"
+  }
+}
+
