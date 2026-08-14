@@ -131,6 +131,8 @@ we can access the user who wrote it with:
 hoot.author
 ```
 
+### `ForeignKey` 
+
 `ForeignKey` creates a **many-to-one relationship**.
 
 It means:
@@ -147,7 +149,7 @@ User: aisha1
    └── Hoot #3
 ```
 
-`on_delete=models.CASCADE`:
+### `on_delete=models.CASCADE`
 
 > What should happen to a user's Hoots if we delete that User?
 
@@ -163,7 +165,7 @@ Delete all of their Hoots
 
 Django requires you to explicitly decide what should happen when the related object is deleted.
 
-`related_name="hoots"`:
+### `related_name="hoots"`
 
 This is for going **the other direction**.
 
@@ -230,7 +232,7 @@ hoot.comments.all()
 
 Deleting a Hoot will also delete its comments because of `CASCADE`.
 
-## Why define `__str__`?
+### Why define `__str__`?
 
 Django calls `__str__` when it needs a readable name for an object, especially in the admin site and terminal.
 
@@ -243,7 +245,7 @@ Without it, the admin would display a less helpful label such as `Hoot object (1
 
 ## Wait, where's the `User` model?
 
-You never defined the `User` model because **Django already defined one for you**.
+We never defined the `User` model because **Django already defined one for us**.
 
 This import:
 
@@ -268,6 +270,7 @@ User
 ├── is_active
 └── ...
 ```
+[_Check out these docs for the full list_](https://docs.djangoproject.com/en/6.0/ref/contrib/auth/#fields).
 
 So when you write:
 
@@ -298,25 +301,13 @@ You had to define what a user was yourself.
 
 Django is more **"batteries included."** Authentication is such a common requirement that Django ships with a complete user/authentication system.
 
-That's also why Django gives you things like:
-
-```python
-request.user
-```
-
-and:
-
-```python
-user.is_authenticated
-```
-
-without you having to build all of that yourself.
+That's also why Django gives you things like `request.user` and `user.is_authenticated` without you having to build all of that yourself.
 
 ### One small caveat
 
 In larger Django projects, developers often create a **custom User model** so they can add things like avatars, roles, bios, etc.
 
-But for our Hoot app, using Django's built-in `User` keeps the things simple:
+But for our Hoot app, using Django's built-in `User` keeps the things simple.
 
 
 ## Make the migration file
