@@ -374,7 +374,21 @@ Create an admin user:
 python manage.py createsuperuser
 ```
 
+Let's use a **Username** of `admin`, simply hit `Enter` to leave the **Email address** blank, and make the password `1234` (you will need to type `y` to bypass Django's password validation because our password is too simple). 
+
 Start the server, visit [http://localhost:8000/admin](http://localhost:8000/admin), and sign in. Add one Hoot and one comment. This is a quick way to verify the models before building the API.
+
+```json
+{
+  "title": "Best Game You've Played This Year?",
+  "text": "I've been looking for something new to play. What's the best game you've played this year and why?",
+  "category": "Games"
+}
+
+{
+  "text": "I've been playing Clair Obscur: Expedition 33 and really enjoying it!"
+}
+```
 
 ## You do: inspect the relationship
 
