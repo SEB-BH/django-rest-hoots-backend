@@ -241,6 +241,84 @@ def __str__(self):
 
 Without it, the admin would display a less helpful label such as `Hoot object (1)`.
 
+## Wait, where's the `User` model?
+
+You never defined the `User` model because **Django already defined one for you**.
+
+This import:
+
+```python
+from django.contrib.auth.models import User
+```
+
+is essentially saying:
+
+> "Give me Django's built-in `User` model so I can use it in this file."
+
+Django's `User` model already has common authentication fields such as:
+
+```text
+User
+├── username
+├── password
+├── email
+├── first_name
+├── last_name
+├── is_staff
+├── is_active
+└── ...
+```
+
+So when you write:
+
+```python
+author = models.ForeignKey(
+    User,
+    on_delete=models.CASCADE,
+    related_name="hoots",
+)
+```
+
+you're creating a relationship between your `Hoot` model and **Django's existing `User` model**.
+
+### Compared with your previous Mongoose apps
+
+In Mongoose, you probably wrote something like:
+
+```javascript
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+})
+
+const User = mongoose.model('User', userSchema)
+```
+
+You had to define what a user was yourself.
+
+Django is more **"batteries included."** Authentication is such a common requirement that Django ships with a complete user/authentication system.
+
+That's also why Django gives you things like:
+
+```python
+request.user
+```
+
+and:
+
+```python
+user.is_authenticated
+```
+
+without you having to build all of that yourself.
+
+### One small caveat
+
+In larger Django projects, developers often create a **custom User model** so they can add things like avatars, roles, bios, etc.
+
+But for our Hoot app, using Django's built-in `User` keeps the things simple:
+
+
 ## Make the migration file
 
 ```bash
