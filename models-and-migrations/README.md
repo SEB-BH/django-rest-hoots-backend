@@ -22,8 +22,8 @@ In PostgreSQL, these become related tables. In Python, Django lets us work with 
 Open `api/models.py`:
 
 ```python
-from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Hoot(models.Model):
@@ -62,14 +62,42 @@ class Hoot(models.Model):
 
 | Code | Meaning |
 | --- | --- |
+| `choices=CATEGORY_CHOICES` | Only accept one of the listed values |
 | `CharField(max_length=100)` | A required short string with a database limit |
 | `TextField()` | A required string intended for longer text |
-| `choices=CATEGORY_CHOICES` | Only accept one of the listed values |
 | `ForeignKey(User, ...)` | Store the ID of one related user |
 | `auto_now_add=True` | Set the timestamp once when the Hoot is created |
 | `ordering = ["-created_at"]` | Return newer Hoots first by default |
 
-Each choice contains a stored value and a display label. They are identical because the frontend already uses capitalized category names.
+
+Django’s `choices` is very similar to Mongoose’s `enum`. **Both restrict a field to a predefined set of values.**
+`CATEGORY_CHOICES` is a list of tuples. Each tuple contains two values:
+
+```python
+("value stored in database", "label shown to user")
+```
+
+The two values don’t have to match.
+For example:
+
+```python
+("TV", "Television")
+```
+
+This would store `"TV"` in the database but show **Television** to the user.
+
+Later, you would connect these choices to a field:
+
+```python
+category = models.CharField(
+    max_length=20,
+    choices=CATEGORY_CHOICES,
+    default="Other"
+)
+```
+
+Django can then create a dropdown containing only those category options. `CATEGORY_CHOICES` itself does not create a database field—it only defines the options that the `category` field can use.
+
 
 ### Understand the foreign key options
 
