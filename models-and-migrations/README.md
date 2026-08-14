@@ -62,15 +62,15 @@ class Hoot(models.Model):
 
 | Code | Meaning |
 | --- | --- |
-| `choices=CATEGORY_CHOICES` | Only accept one of the listed values |
-| `CharField(max_length=100)` | A required short string with a database limit |
+| `CharField(max_length=100)` | A required short string with a database limit (note that Django requires `max_length` to be defined whenever `CharField` is used) |
 | `TextField()` | A required string intended for longer text |
+| `choices=CATEGORY_CHOICES` | Only accept one of the listed values |
 | `ForeignKey(User, ...)` | Store the ID of one related user |
 | `auto_now_add=True` | Set the timestamp once when the Hoot is created |
 | `ordering = ["-created_at"]` | Return newer Hoots first by default |
 
 
-Django’s `choices` is very similar to Mongoose’s `enum`. **Both restrict a field to a predefined set of values.**
+Django’s `choices` on the `category` field is very similar to Mongoose’s `enum`. **Both restrict a field to a predefined set of values.**
 `CATEGORY_CHOICES` is a list of tuples. Each tuple contains two values:
 
 ```python
@@ -101,6 +101,10 @@ Django can then create a dropdown containing only those category options. `CATEG
 
 ### Understand the foreign key options
 
+This code is basically saying:
+
+> **Every Hoot belongs to one User.**
+
 ```python
 author = models.ForeignKey(
     User,
@@ -109,11 +113,87 @@ author = models.ForeignKey(
 )
 ```
 
-- `User` is the model being referenced.
-- `on_delete=models.CASCADE` means deleting a user also deletes that user's Hoots.
-- `related_name="hoots"` allows a user instance to access its Hoots with `user.hoots.all()`.
+Let's break down each piece.
 
-The database stores an `author_id` column. Django lets our Python code use `hoot.author` to access the related user object.
+### `author =`
+
+This creates a field called `author` on every Hoot.
+
+So if we have:
+
+```python
+hoot = Hoot.objects.get(id=1)
+```
+
+we can access the user who wrote it with:
+
+```python
+hoot.author
+```
+
+`ForeignKey` creates a **many-to-one relationship**.
+
+It means:
+
+> Each Hoot has **one author**, but one User can author **many Hoots**.
+
+For example:
+
+```text
+User: aisha1
+   ↑
+   ├── Hoot #1
+   ├── Hoot #2
+   └── Hoot #3
+```
+
+`on_delete=models.CASCADE`:
+
+> What should happen to a user's Hoots if we delete that User?
+
+`CASCADE` means **delete their Hoots too**.
+
+So:
+
+```text
+Delete User
+    ↓
+Delete all of their Hoots
+```
+
+Django requires you to explicitly decide what should happen when the related object is deleted.
+
+`related_name="hoots"`:
+
+This is for going **the other direction**.
+
+We already know we can go from a Hoot → User.  But what if we have a User and want **all the Hoots they wrote?**
+
+Because we specified:
+
+```python
+related_name="hoots"
+```
+
+we can do:
+
+```python
+user.hoots.all()
+```
+
+So you get this nice two-way relationship:
+
+```python
+# Hoot → User
+hoot.author
+
+# User → their Hoots
+user.hoots.all()
+```
+
+> **A Hoot has one author. The author must be a User. A User can have many Hoots. If the User is deleted, delete their Hoots too. Let me access a user's Hoots with `user.hoots.all()`.**
+
+So this is essentially how we're representing the **one-to-many relationship** you would have handled with an `ObjectId` + `ref` in Mongoose.
 
 ## Build the Comment model
 
