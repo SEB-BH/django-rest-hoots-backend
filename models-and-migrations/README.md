@@ -197,6 +197,17 @@ user.hoots.all()
 
 So this is essentially how we're representing the **one-to-many relationship** you would have handled with an `ObjectId` + `ref` in Mongoose.
 
+### Why define `__str__`?
+
+Django calls `__str__` when it needs a readable name for an object, especially in the admin site and terminal.
+
+```python
+def __str__(self):
+    return self.title
+```
+
+Without it, the admin would display a less helpful label such as `Hoot object (1)`.
+
 ## Build the Comment model
 
 Add this class below `Hoot` in `api/models.py`:
@@ -232,16 +243,9 @@ hoot.comments.all()
 
 Deleting a Hoot will also delete its comments because of `CASCADE`.
 
-### Why define `__str__`?
+#### `__str__` is a bit different on `Comment`
 
-Django calls `__str__` when it needs a readable name for an object, especially in the admin site and terminal.
-
-```python
-def __str__(self):
-    return self.title
-```
-
-Without it, the admin would display a less helpful label such as `Hoot object (1)`.
+The `[:40]` is Python slicing. It means: "Give me everything from the beginning up to the first 40 characters."
 
 ## Wait, where's the `User` model?
 
@@ -270,9 +274,9 @@ User
 ├── is_active
 └── ...
 ```
-[_Check out these docs for the full list_](https://docs.djangoproject.com/en/6.0/ref/contrib/auth/#fields).
+_Check out [these docs](https://docs.djangoproject.com/en/6.0/ref/contrib/auth/#fields) for the full list of built-in fields_.
 
-So when you write:
+So when we write:
 
 ```python
 author = models.ForeignKey(
@@ -282,11 +286,11 @@ author = models.ForeignKey(
 )
 ```
 
-you're creating a relationship between your `Hoot` model and **Django's existing `User` model**.
+we're creating a relationship between our `Hoot` model and **Django's existing `User` model**.
 
-### Compared with your previous Mongoose apps
+### Compared with our previous Mongoose apps
 
-In Mongoose, you probably wrote something like:
+In Mongoose, we wrote something like:
 
 ```javascript
 const userSchema = new mongoose.Schema({
@@ -297,11 +301,11 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema)
 ```
 
-You had to define what a user was yourself.
+We had to define what a user was ourselves.
 
 Django is more **"batteries included."** Authentication is such a common requirement that Django ships with a complete user/authentication system.
 
-That's also why Django gives you things like `request.user` and `user.is_authenticated` without you having to build all of that yourself.
+That's also why Django gives us things like `request.user` and `user.is_authenticated` without us having to build all of that ourselves.
 
 ### One small caveat
 
