@@ -3,6 +3,18 @@
   <span class="subhead">Instructor Guide</span>
 </h1>
 
+
+        {
+          "friendlyName": "Integration Lab",
+          "dirName": "integration-lab",
+          "type": "Exercise",
+          "skill": "Verify the full application flow and debug integration failures.",
+          "learningObjective": "Demonstrate the complete MVP with two users and diagnose failures by layer.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 60
+        }
+
 The times leave room on Day 1 for review and practice. Day 2 is a full build-and-integration session.
 
 ## What students build

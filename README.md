@@ -9,7 +9,7 @@ In this lesson, students build a Django REST Framework API for the supplied Hoot
 
 Every API endpoint is a function, every HTTP method has an explicit branch, and Django's built-in `User` model is reused. The finished MVP supports sign-up, sign-in, a user list, Hoot CRUD, nested comment CRUD, JWT authorization, ownership rules, PostgreSQL, and CORS.
 
-## Two-day scope
+## Contents
 
 | Lesson | Estimated time |
 | --- | ---: |
@@ -21,6 +21,8 @@ Every API endpoint is a function, every HTTP method has an explicit branch, and 
 |[Hoot CRUD](./hoot-crud/README.md) | 75 min |
 |[Comments and Ownership](./comments-and-ownership/README.md) | 75 min |
 |[Connect the React Frontend](./connect-the-react-frontend/README.md) | 45 min |
-|[Integration Lab](./integration-lab/README.md) | 60 min |
+
+
+<!-- |[Integration Lab](./integration-lab/README.md) | 60 min | -->
 
 

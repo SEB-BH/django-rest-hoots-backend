@@ -98,16 +98,6 @@
           "videoUrl": "",
           "videoLengthInMinutes": 0,
           "estimatedDeliveryTimeInMinutes": 45
-        },
-        {
-          "friendlyName": "Integration Lab",
-          "dirName": "integration-lab",
-          "type": "Exercise",
-          "skill": "Verify the full application flow and debug integration failures.",
-          "learningObjective": "Demonstrate the complete MVP with two users and diagnose failures by layer.",
-          "videoUrl": "",
-          "videoLengthInMinutes": 0,
-          "estimatedDeliveryTimeInMinutes": 60
         }
       ],
       "isHeaderShown": true,
@@ -217,16 +207,6 @@
           "videoUrl": "",
           "videoLengthInMinutes": 0,
           "estimatedDeliveryTimeInMinutes": 45
-        },
-        {
-          "friendlyName": "Integration Lab",
-          "dirName": "integration-lab",
-          "type": "Exercise",
-          "skill": "Verify the full application flow and debug integration failures.",
-          "learningObjective": "Demonstrate the complete MVP with two users and diagnose failures by layer.",
-          "videoUrl": "",
-          "videoLengthInMinutes": 0,
-          "estimatedDeliveryTimeInMinutes": 60
         }
       ],
       "isHeaderShown": true,

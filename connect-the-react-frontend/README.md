@@ -94,7 +94,7 @@ npm run dev
 
 Keep both terminals visible. Each request should appear in the Django terminal with its method, path, and status code.
 
-## Complete the first browser flow
+## Complete the full user flow
 
 1. Open the React URL shown by Vite.
 2. Sign up with a username and password.
