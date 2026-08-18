@@ -11,16 +11,16 @@ Every API endpoint is a function, every HTTP method has an explicit branch, and 
 
 ## Contents
 
-| Lesson | Estimated time |
+| Lesson | Skill |
 | --- | ---: |
-|[Django and Python Orientation](./django-and-python-orientation/README.md) | 30 min |
+|[Django and Python Orientation](./django-and-python-orientation/README.md) | Relate Express concepts to Django and read the Python used in the API. |
 |[Project and Database Setup](./project-and-database-setup/README.md) | 60 min |
 |[Models and Migrations](./models-and-migrations/README.md) | 75 min |
 |[Serializers and API Shapes](./serializers-and-api-shapes/README.md) | 60 min |
 |[JWT Authentication](./jwt-authentication/README.md) | 75 min |
+|[Connect the React Frontend](./connect-the-react-frontend/README.md) | 45 min |
 |[Hoot CRUD](./hoot-crud/README.md) | 75 min |
 |[Comments and Ownership](./comments-and-ownership/README.md) | 75 min |
-|[Connect the React Frontend](./connect-the-react-frontend/README.md) | 45 min |
 
 
 <!-- |[Integration Lab](./integration-lab/README.md) | 60 min | -->

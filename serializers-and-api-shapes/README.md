@@ -169,7 +169,7 @@ The admin checkpoint should have left at least one Hoot in the database. Open th
 python manage.py shell
 ```
 
-```python
+```text
 from api.models import Hoot
 from api.serializers import HootSerializer
 
@@ -184,7 +184,7 @@ Look for `_id`, `createdAt`, `author`, and `comments`. Exit with `exit()`.
 
 Open the shell again if needed:
 
-```python
+```text
 from api.serializers import HootSerializer
 
 bad_data = {
@@ -199,21 +199,3 @@ serializer.errors
 
 The serializer reports that `text` is required and the category is not a valid choice. No invalid Hoot is saved.
 
-## Day 1 checkpoint
-
-Run:
-
-```bash
-python manage.py check
-python manage.py showmigrations api
-```
-
-Before Day 2, confirm:
-
-- [ ] The virtual environment activates after opening a new terminal.
-- [ ] PostgreSQL connects and all migrations are applied.
-- [ ] Hoot and Comment appear in admin.
-- [ ] `HootSerializer(hoot).data` contains frontend-compatible field names.
-- [ ] Nested authors include only `_id` and `username`—never password data.
-
-Tomorrow's view functions will connect URLs, requests, serializers, models, and responses.

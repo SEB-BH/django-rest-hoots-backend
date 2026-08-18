@@ -5,7 +5,7 @@
 
 **Learning objective:** By the end of this lesson, students will be able to issue a frontend-compatible JWT during sign-up/sign-in and use it to authenticate protected API requests.
 
-## Begin Day 2
+<!-- ## Begin Day 2
 
 Activate the environment and verify yesterday's work:
 
@@ -24,7 +24,7 @@ source .venv/Scripts/activate
 ```bash
 python manage.py check
 python manage.py showmigrations api
-```
+``` -->
 
 ## Review the frontend's auth flow
 
@@ -32,14 +32,16 @@ After sign-up or sign-in, the React service expects:
 
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+    eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSCI6MTUxNjIzOTAyMn0.
+    KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30"
 }
 ```
 
 React saves the token in `localStorage`. Later services send it in a request header:
 
-```plaintext
-Authorization: Bearer a.jwt.token
+```js
+Authorization: `Bearer ${localStorage.getItem('token')}`
 ```
 
 React also decodes the middle part of the JWT and reads a `payload` object:
@@ -63,8 +65,8 @@ At the top of `hoot_api/settings.py`, add the `timedelta` import:
 
 ```python
 import os
-from datetime import timedelta
 from pathlib import Path
+from datetime import timedelta
 ```
 
 Add these settings near the bottom:
@@ -88,8 +90,6 @@ The defaults now say:
 
 1. Look for a valid JWT in a Bearer header.
 2. Require an authenticated user for every DRF view unless a view explicitly opts out.
-
-Seven days is convenient for a one-week classroom project. A production application would usually use shorter access tokens and add a refresh-token flow.
 
 ## Create the token helper
 
@@ -232,7 +232,7 @@ Open `hoot_api/urls.py` and include the app URLs at the root:
 
 ```python
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path, include
 
 
 urlpatterns = [
@@ -282,10 +282,3 @@ Then add an Authorization header using Postman's **Bearer Token** option. Paste 
 ]
 ```
 
-## Checkpoint
-
-- [ ] Sign-up creates a user and returns status `201` with `{ "token": ... }`.
-- [ ] A duplicate username returns an `err` message.
-- [ ] Sign-in rejects an incorrect password and accepts the correct one.
-- [ ] The decoded token has `payload._id` and `payload.username`.
-- [ ] `/users` returns `401` without a token and user data with a valid token.

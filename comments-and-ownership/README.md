@@ -210,11 +210,48 @@ hoot-backend/
 └── requirements.txt
 ```
 
-## Checkpoint
+## Complete the full user flow
 
-- [ ] Any authenticated user can comment on a visible Hoot.
-- [ ] The API sets the comment author and Hoot relationship.
-- [ ] The parent Hoot response includes nested comments.
-- [ ] Only a comment's author can update or delete it.
-- [ ] A mismatched Hoot/comment URL returns `404`.
-- [ ] Deleting a Hoot also deletes its comments.
+1. Open the React URL shown by Vite.
+2. Sign up with a username and password.
+3. Confirm that the dashboard appears and lists the new user.
+4. Open the Hoot list.
+5. Create a Hoot.
+6. Open its details.
+7. Add a comment.
+8. Edit the Hoot and comment.
+9. Delete the comment and Hoot.
+10. Sign out, sign back in, and confirm the data remains in PostgreSQL.
+
+## Compare the network request
+
+Open the browser developer tools and select the Network tab. Click one request to `/hoots` and identify:
+
+- **Request URL:** `http://localhost:8000/hoots`
+- **Request method:** `GET` or `POST`
+- **Authorization header:** begins with `Bearer`
+- **Response status:** normally `200` or `201`
+- **Response data:** uses `_id`, `createdAt`, and nested author objects
+
+This view connects the code in the React service to the code in the Django view.
+
+## Diagnose by status code
+
+| Result | Meaning | Check first |
+| --- | --- | --- |
+| Browser says CORS | Django did not allow this frontend origin | Exact React port and CORS middleware order |
+| `401 Unauthorized` | The request is not authenticated | Token exists and header begins with `Bearer`, followed by a space |
+| `403 Forbidden` | The user is signed in but does not own the content | Compare `request.user` with the record's author |
+| `404 Not Found` | No URL or record matched | Request path, captured IDs, and Django terminal |
+| `400 Bad Request` | Submitted data failed validation | Response body and serializer errors |
+| `500 Internal Server Error` | Backend code raised an exception | Read the bottom of the Django traceback first |
+
+## Do not change several layers at once
+
+When something fails:
+
+1. Reproduce the same request in Postman.
+2. If Postman also fails, inspect URLs, views, serializers, models, and the Django traceback.
+3. If Postman works but React fails, inspect the frontend base URL, CORS, Bearer token, request body, and browser network response.
+
+Changing both applications before retesting makes it harder to know which change solved or caused the problem.

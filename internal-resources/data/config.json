@@ -70,6 +70,16 @@
           "estimatedDeliveryTimeInMinutes": 75
         },
         {
+          "friendlyName": "Connect the React Frontend",
+          "dirName": "connect-the-react-frontend",
+          "type": "Content",
+          "skill": "Configure CORS and connect a Vite environment variable to Django.",
+          "learningObjective": "Run both applications and complete an authenticated request from React to Django.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 45
+        },
+        {
           "friendlyName": "Hoot CRUD",
           "dirName": "hoot-crud",
           "type": "Content",
@@ -88,16 +98,6 @@
           "videoUrl": "",
           "videoLengthInMinutes": 0,
           "estimatedDeliveryTimeInMinutes": 75
-        },
-        {
-          "friendlyName": "Connect the React Frontend",
-          "dirName": "connect-the-react-frontend",
-          "type": "Content",
-          "skill": "Configure CORS and connect a Vite environment variable to Django.",
-          "learningObjective": "Run both applications and complete an authenticated request from React to Django.",
-          "videoUrl": "",
-          "videoLengthInMinutes": 0,
-          "estimatedDeliveryTimeInMinutes": 45
         }
       ],
       "isHeaderShown": true,
@@ -179,6 +179,16 @@
           "estimatedDeliveryTimeInMinutes": 75
         },
         {
+          "friendlyName": "Connect the React Frontend",
+          "dirName": "connect-the-react-frontend",
+          "type": "Content",
+          "skill": "Configure CORS and connect a Vite environment variable to Django.",
+          "learningObjective": "Run both applications and complete an authenticated request from React to Django.",
+          "videoUrl": "",
+          "videoLengthInMinutes": 0,
+          "estimatedDeliveryTimeInMinutes": 45
+        },
+        {
           "friendlyName": "Hoot CRUD",
           "dirName": "hoot-crud",
           "type": "Content",
@@ -197,16 +207,6 @@
           "videoUrl": "",
           "videoLengthInMinutes": 0,
           "estimatedDeliveryTimeInMinutes": 75
-        },
-        {
-          "friendlyName": "Connect the React Frontend",
-          "dirName": "connect-the-react-frontend",
-          "type": "Content",
-          "skill": "Configure CORS and connect a Vite environment variable to Django.",
-          "learningObjective": "Run both applications and complete an authenticated request from React to Django.",
-          "videoUrl": "",
-          "videoLengthInMinutes": 0,
-          "estimatedDeliveryTimeInMinutes": 45
         }
       ],
       "isHeaderShown": true,
