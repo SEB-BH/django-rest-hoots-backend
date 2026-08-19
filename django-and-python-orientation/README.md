@@ -58,74 +58,8 @@ Here, “app” does not mean a separate deployed application. It means one orga
 
 We do not need all of Python before starting Django. We need to recognize a small group of patterns.
 
-### Variables, strings, booleans, and null values
-
-| JavaScript | Python |
-| --- | --- |
-| `const title = 'Hello'` | `title = 'Hello'` |
-| `true` / `false` | `True` / `False` |
-| `null` | `None` |
-| `console.log(title)` | `print(title)` |
-
-Python does not use `const`, `let`, or semicolons.
-
-### Lists and dictionaries
-
-Python **lists** are similar to JavaScript arrays. Python **dictionaries** are similar to JavaScript objects.
-
-```python
-categories = ["News", "Sports", "Games"]
-
-user = {
-    "_id": "1",
-    "username": "sam",
-}
-```
-
-### Functions and indentation
-
-```python
-def greet(username):
-    message = f"Welcome, {username}!"
-    return message
-```
-
-- `def` begins a function definition.
-- A colon starts the function's indented block.
-- Indentation is part of Python syntax, not decoration.
-- An f-string inserts values into a string, similar to a JavaScript template literal.
-
-The closest JavaScript version is:
-
-```javascript
-const greet = (username) => {
-  const message = `Welcome, ${username}!`
-  return message
-}
-```
-
-Use four spaces for each Python indentation level. Do not mix tabs and spaces.
-
-### Conditions
-
-```python
-if request.method == "GET":
-    return Response({"message": "Reading data"})
-
-if request.method == "POST":
-    return Response({"message": "Creating data"})
-```
-
-Python uses `and`, `or`, and `not` instead of `&&`, `||`, and `!`.
-
-### Imports
-
-```python
-from rest_framework.response import Response
-from .models import Hoot
-```
-
-The first line imports `Response` from an installed package. The dot in `.models` means “the `models.py` file in this same app.”
+- Variables, strings, booleans, and null values
+- Lists and dictionaries, functions, conditions, and imports
 
 ### Classes
 
